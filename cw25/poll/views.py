@@ -24,5 +24,5 @@ def show_question(request):
         )
     
 
-def already_vote(rquest):
+def already_vote(request):
     return HttpResponse('you have already voted tody. please comeback tomorrow!')
