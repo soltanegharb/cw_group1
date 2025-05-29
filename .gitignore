@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+cw25/poll/migrations/
 # C extensions
 *.so
 
