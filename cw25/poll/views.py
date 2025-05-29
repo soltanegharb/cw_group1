@@ -1,22 +1,25 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.urls import reverse
 from poll.models import Poll, Choice
 import datetime
 
 def show_question(request):
 
     today = datetime.datetime.today().date()
+    print(today)
     voted = request.session.get('voted')
     if voted == today:
         return redirect('already_vote')
     
     if request.method == 'POST':
-        
         request.session['voted'] = today
+        return redirect(reverse('poll:show_question'))
     else:
         poll = Poll.objects.get(publish_date=today)
-        choices = Choice.objects.filter(question=poll)
+        poll_text = poll.question
+        choices = Choice.objects.filter(poll=poll)
         
-        context = {'poll': poll, 'choices': choices}
+        context = {'poll': poll_text, 'choices': choices}
         return render(
             request,
             'poll.html',
