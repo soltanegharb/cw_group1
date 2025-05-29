@@ -3,7 +3,7 @@ from django.db import models
 
 class Poll(models.Model):
     question = models.TextField()
-    created_at = models.DateField(auto_now_add=True)
+    publish_date = models.DateField(auto_now_add=True)
 
 
 class Choice(models.Model):
